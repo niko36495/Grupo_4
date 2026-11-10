@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Couchbase Student Manager</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">CS</span><div><strong>Student Manager</strong><small>Couchbase Capella · CRUD académico</small></div></div>
+    <span class="status"><i></i> Panel de estudiantes</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">GESTIÓN ACADÉMICA</p><h1>Estudiantes</h1><p>Registra, consulta y administra los estudiantes de tu colección.</p></div>
+      <div class="hero-icon"></div>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><span>Total estudiantes</span><strong id="totalCount">—</strong><small>Registros en la colección</small></article>
+      <article class="stat-card"><span>Programas</span><strong id="programCount">—</strong><small>Programas académicos distintos</small></article>
+      <article class="stat-card"><span>Estado</span><strong class="connected">API</strong><small>Servidor Express</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><h2 id="formTitle">Registrar estudiante</h2><p>Completa los datos para crear un documento.</p></div><span class="pill">FORMULARIO</span></div>
+      <form id="studentForm">
+        <div class="form-grid">
+          <label>ID / documento <input id="id" name="id" placeholder="EST001" required maxlength="50"></label>
+          <label>Nombre completo <input id="nombre" name="nombre" placeholder="Nombre del estudiante" required maxlength="120"></label>
+          <label>Programa académico <input id="programa" name="programa" placeholder="Ingeniería Multimedia" required maxlength="120"></label>
+          <label>Semestre <input id="semestre" name="semestre" type="number" min="1" max="20" placeholder="6" required></label>
+          <label class="wide">Correo electrónico <input id="correo" name="correo" type="email" placeholder="estudiante@universidad.edu"></label>
+          <label class="checkbox wide"><input id="activo" name="activo" type="checkbox" checked> Estudiante activo</label>
+        </div>
+        <div class="form-actions"><button class="btn primary" id="submitBtn" type="submit">＋ Registrar estudiante</button><button class="btn ghost" id="cancelEdit" type="button" hidden>Cancelar edición</button></div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><h2>Listado de estudiantes</h2><p>Busca por nombre o ID y filtra por programa.</p></div><span class="pill">COLECCIÓN</span></div>
+      <div class="filters">
+        <label class="search">⌕ <input id="search" placeholder="Buscar estudiante o ID..."></label>
+        <select id="programFilter"><option value="">Todos los programas</option></select>
+        <button class="btn ghost" id="refreshBtn" type="button">↻ Actualizar</button>
+      </div>
+      <div id="message" class="message" role="status"></div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Estudiante</th><th>Programa</th><th>Semestre</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="studentsBody"><tr><td colspan="6" class="empty">Cargando estudiantes…</td></tr></tbody></table></div>
+      <div class="table-footer"><span id="resultCount">0 resultados</span><span>Student Manager · Demo académica</span></div>
+    </section>
+    <footer>Proyecto académico · Node.js + Express + Couchbase Capella</footer>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
